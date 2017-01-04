@@ -6,7 +6,7 @@
 
 rm(list = ls())
 
-setwd('/Users/Evan/DataScience/Programs/Scrape/')
+setwd('~/DataScience/spider/PM/')
 
 library(dplyr)
 library(rvest)
@@ -17,17 +17,17 @@ library(readr)
 
 if ('datasets' %in% ls()) datasets <- data.frame()
 
-scraping <- function(address='北京',startyear= 2014,endyear= 2016,startmonth=1,endmonth=12){
-        for (j in startyear:endyear){
-                for (i in startmonth:endmonth){
+scraping <- function(address='鍖椾含', startyear= 2014,endyear = 2016, startmonth=1, endmonth=12){
+        for (j in startyear : endyear){
+                for (i in startmonth : endmonth){
                         url <- paste0('http://www.aqistudy.cn/historydata/daydata.php?city=',address,'&month=',j,'-',str_pad(i,2,side = 'left',pad='0'))
                         data <- url %>% read_html() %>% html_nodes('table') %>% .[[1]] %>% html_table() %>% as.data.frame()
-                        datasets <- rbind(datasets,data)
+                        datasets <- rbind(datasets, data)
                         Sys.sleep(5)
                 }
         }
         datasets
-        write.csv(datasets,file=paste0(address,startyear,'-',endyear,'.csv'),fileEncoding = 'GB2312')
+        write.csv(datasets, file=paste0(address, startyear,'-',endyear,'.csv'),fileEncoding = 'UTF-8')
 }
 
-scraping(address='北京',endyear=2016)
+scraping(address='鍖椾含',endyear=2016)
