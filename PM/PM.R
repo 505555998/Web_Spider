@@ -15,9 +15,7 @@ library(readr)
 
 # To prevent read data again
 
-if ('datasets' %in% ls()) datasets <- data.frame()
-
-scraping <- function(address='北京', startyear= 2014,endyear = 2016, startmonth=1, endmonth=12){
+scraping <- function(address='北京', startyear= 2014, endyear = 2016, startmonth = 1, endmonth = 12){
         for (j in startyear : endyear){
                 for (i in startmonth : endmonth){
                         url <- paste0('http://www.aqistudy.cn/historydata/daydata.php?city=',address,'&month=',j,'-',str_pad(i,2,side = 'left',pad='0'))
