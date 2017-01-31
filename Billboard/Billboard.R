@@ -8,7 +8,7 @@ library(dplyr)
 library(readr)
 library(stringr)
 
-html <- read_html('http://www.billboard.com/charts/country-airplay/2016-05-28') %>% html_nodes(css='.chart-row__current-week,.chart-row__song,.chart-row__artist, .chart-row__stats ') %>% html_text %>% gsub('\n','',.) %>% str_trim(side = "both") %>% print
+html <- read_html('https://tianchi.shuju.aliyun.com/competition/information.htm?spm=5176.100067.5678.2.VcHvcW&raceId=231591') %>% html_nodes(css='.chart-row__current-week,.chart-row__song,.chart-row__artist, .chart-row__stats ') %>% html_text %>% gsub('\n','',.) %>% str_trim(side = "both") %>% print
 
 cbind(
     html[seq(1,length(html),4)],
